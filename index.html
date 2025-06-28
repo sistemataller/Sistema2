@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Taller de motos EbenEzer</title>
+    <style>
+        body { background-color: black; color: white; font-family: Arial, sans-serif; }
+        .tabs { display: flex; background-color: #222; padding: 10px; }
+        .tab { margin-right: 10px; cursor: pointer; padding: 10px; background: #444; color: white; }
+        .tab:hover { background: #666; }
+        .content { display: none; padding: 20px; }
+        .content.active { display: block; }
+        label { display: block; margin-top: 10px; }
+        input, textarea { width: 100%%; padding: 5px; margin-top: 5px; }
+        button { margin-top: 10px; padding: 10px; background: #007BFF; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Taller de motos EbenEzer</h1>
+    <div class="tabs">
+        <div class="tab" onclick="showTab('recepcion')">Recepción</div>
+        <div class="tab" onclick="showTab('factura')">Factura</div>
+        <div class="tab" onclick="showTab('presupuesto')">Presupuesto</div>
+        <div class="tab" onclick="showTab('agenda')">Agenda</div>
+        <div class="tab" onclick="showTab('repuestos')">Inventario</div>
+    </div>
+
+    <div id="recepcion" class="content active">
+        <form method="post" action="/registro">
+            <label>Cliente: <input type="text" name="cliente"></label>
+            <label>Número de cliente: <input type="text" name="numero_cliente"></label>
+            <label>Placa: <input type="text" name="placa"></label>
+            <label>Marca: <input type="text" name="marca"></label>
+            <label>Modelo: <input type="text" name="modelo"></label>
+            <label>Observaciones: <textarea name="observaciones"></textarea></label>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <div id="factura" class="content">
+        <p>Generar factura (en desarrollo).</p>
+    </div>
+
+    <div id="presupuesto" class="content">
+        <p>Generar presupuesto (en desarrollo).</p>
+    </div>
+
+    <div id="agenda" class="content">
+        <p>Agenda de citas (en desarrollo).</p>
+    </div>
+
+    <div id="repuestos" class="content">
+        <form method="post" action="/agregar_repuesto">
+            <label>Código: <input type="text" name="codigo"></label>
+            <label>Nombre del repuesto: <input type="text" name="nombre"></label>
+            <label>Precio: <input type="number" step="0.01" name="precio"></label>
+            <button type="submit">Agregar</button>
+        </form>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(c => c.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
